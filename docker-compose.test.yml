@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+    mssql:
+        container_name: test-db
+        image: 'mcr.microsoft.com/mssql/server:2019-latest'
+        user: root
+        ports:
+            - '1443:1433'
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=Iot@@123
+            - TZ=Asia/Ho_Chi_Minh
+        volumes:
+            - ./data_test:/var/opt/mssql

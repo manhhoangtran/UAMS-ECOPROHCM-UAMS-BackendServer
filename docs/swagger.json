@@ -1,0 +1,2955 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is API document for DMS backend server",
+        "title": "Backend API",
+        "contact": {
+            "name": "Mr. Khai"
+        },
+        "version": "1.0"
+    },
+    "host": "http://iot.hcmue.space:8002",
+    "basePath": "/v1",
+    "paths": {
+        "/v1//scheduler/excel": {
+            "post": {
+                "description": "Append Scheduler base on Excel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Append Scheduler Base On Excel",
+                "parameters": [
+                    {
+                        "description": "Fields need to append a scheduler",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateScheduler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Scheduler"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update Scheduler base on Excel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Scheduler Base On Excel",
+                "parameters": [
+                    {
+                        "description": "Fields need to append a scheduler",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagUpdateScheduler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Scheduler"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/area": {
+            "post": {
+                "description": "Create area",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Area",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a area",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateArea"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Area"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete area using \"id\" field",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Area By ID",
+                "parameters": [
+                    {
+                        "description": "Area ID",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "type": "object"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update area, must have \"id\" field",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Area By ID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a area",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagUpdateArea"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/area/{id}": {
+            "get": {
+                "description": "find area info by area id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Area By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Area ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Area"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/areas": {
+            "get": {
+                "description": "find all areas info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Area",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Area"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/block/cmd": {
+            "post": {
+                "description": "Unlock or Lock all doorlocks in a Block",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Unlock or Lock all gateway's doorlocks by BlockID",
+                "parameters": [
+                    {
+                        "description": "Gateway Block command",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GatewayBlockCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer": {
+            "post": {
+                "description": "Create customer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Customer",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a customer",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateCustomer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete customer using \"cccd\" field. Send deleted info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Customer By CCCD",
+                "parameters": [
+                    {
+                        "description": "Customer CCCD",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DeleteCustomer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update customer, must have correct \"id\" and \"cccd\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Customer By ID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a customer",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer/{cccd}": {
+            "get": {
+                "description": "find customer info by customer cccd",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Customer By CCCD",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer CCCD",
+                        "name": "cccd",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer/{cccd}/scheduler": {
+            "post": {
+                "description": "Add scheduler that allows customer open specific door. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Add Door Open Scheduler For Customer",
+                "parameters": [
+                    {
+                        "description": "Request with Scheduler, GatewayID, DoorlockAdress",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserSchedulerReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customers": {
+            "get": {
+                "description": "find all customers info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Customer",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Customer"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlock": {
+            "post": {
+                "description": "Create doorlock. Send created info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Doorlock",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a doorlock",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateDoorlock"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Doorlock"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete doorlock using \"id\" field. Send deleted info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Doorlock By ID",
+                "parameters": [
+                    {
+                        "description": "Doorlock Delete payload",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "type": "object"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update doorlock, must have \"gatewayId\" and \"doorlockAddress\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Doorlock By Doorlock Address and GatewayID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a doorlock",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagUpdateDoorlock"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlock/cmd": {
+            "patch": {
+                "description": "Update doorlock state, must have \"id\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Doorlock State By ID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a doorlock state",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwaggerDoorlockCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlock/state/cmd": {
+            "patch": {
+                "description": "Send command lock/unlock forever to Doorlock by serialID and save its lock state",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Send command lock/unlock forever to Doorlock and update doorlock's lock state",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a doorlock state",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DoorlockCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlock/status/{id}": {
+            "get": {
+                "description": "Get doorlock status by doorlock id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get Doorlock Status By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Doorlock ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DoorlockStatus"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlock/{id}": {
+            "get": {
+                "description": "find doorlock info by doorlock id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Doorlock By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Doorlock ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Doorlock"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlockStatusLog/:fromTime/:toTime": {
+            "get": {
+                "description": "find doorlock status logs in time range",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find DoorlockStatusLog In Time Range",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "From Unix time",
+                        "name": "fromTime",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "To Unix time",
+                        "name": "toTime",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.DoorlockStatusLog"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete doorlock status logs in time range",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete DoorlockStatusLog In Time Range",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "From Unix time",
+                        "name": "fromTime",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "To Unix time",
+                        "name": "toTime",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlockStatusLog/door/:id": {
+            "delete": {
+                "description": "delete doorlock status logs by doorId",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Doorlock status logs by doorId",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "DoorID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlockStatusLog/{doorId}": {
+            "get": {
+                "description": "find doorlock status logs by door id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find DoorlockStatusLog By DoorID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "DoorlockStatusLog ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DoorlockStatusLog"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlockStatusLogs": {
+            "get": {
+                "description": "find all doorlock status logs info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All DoorlockStatusLog",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.DoorlockStatusLog"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doorlocks": {
+            "get": {
+                "description": "find all doorlocks info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Doorlock",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Doorlock"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/employee": {
+            "post": {
+                "description": "Create employee. Send created info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Employee",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a employee",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateEmployee"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Employee"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete employee using \"msnv\" field. Send deleted info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Employee By MSNV",
+                "parameters": [
+                    {
+                        "description": "Employee MSNV",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DeleteEmployee"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update employee, must have correct \"id\" and \"msnv\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Employee By ID and MSNV",
+                "parameters": [
+                    {
+                        "description": "Fields need to update an employee",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Employee"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/employee/{msnv}": {
+            "get": {
+                "description": "find employee info by employee msnv",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Employee By MSNV",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Employee MSNV",
+                        "name": "msnv",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Employee"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/employee/{msnv}/scheduler": {
+            "post": {
+                "description": "Add scheduler that allows employee open specific door. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Add Door Open Scheduler For Employee",
+                "parameters": [
+                    {
+                        "description": "Request with Scheduler, GatewayID, DoorlockAdress",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserSchedulerReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/employees": {
+            "get": {
+                "description": "find all employees info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Employee",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Employee"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gateway": {
+            "post": {
+                "description": "Create gateway. Send created info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Gateway",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a gateway",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateGateway"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Gateway"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete gateway using \"\" field. Send deleted info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Gateway By Gateway ID",
+                "parameters": [
+                    {
+                        "description": "Gateway ID",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "type": "object"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "gateway_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update gateway, must have \"gateway_id\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Gateway By Gateway ID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a gateway",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagUpateGateway"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gateway/{id}": {
+            "get": {
+                "description": "find gateway and doorlock info by gateway id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Gateway By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Gateway ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Gateway"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gateway/{id}/doorlock": {
+            "post": {
+                "description": "Add Doorlock for Gateway",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Add Doorlock for Gateway",
+                "parameters": [
+                    {
+                        "description": "Request with Doorlock",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Doorlock"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gatewayLog/{id}": {
+            "get": {
+                "description": "find gateway log info by id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find GatewayLog By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "GatewayLog ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GatewayLog"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gatewayLogs": {
+            "get": {
+                "description": "find all gateway logs info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All GatewayLog",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.GatewayLog"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gatewayLogs/:id/period": {
+            "get": {
+                "description": "Get gateway's logs by log type (DEBUG/INFO) in a period of time (UNIX)",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Gateway logs by log type in period of time",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "GatewayLog ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Log's type (DEBUG/INFO), default is DEBUG",
+                        "name": "type",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "From Unix time",
+                        "name": "from",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "To Unix time, default use current time",
+                        "name": "to",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.GatewayLog"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gatewayLogs/period": {
+            "post": {
+                "description": "Change time period for GatewayLogs Cleaner",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update GatewayLogs Cleaner time period (Default: 1 week)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Period (HOURS)",
+                        "name": "period",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gatewayLogs/period/{id}/date/:from/:to": {
+            "get": {
+                "description": "find Gateway logs by period of time",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Gateway logs by period of time",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "GatewayLog ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "From Unix time",
+                        "name": "from",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "To Unix time",
+                        "name": "to",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.GatewayLog"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/gateways": {
+            "get": {
+                "description": "find all gateways info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Gateway",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Gateway"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/scheduler": {
+            "post": {
+                "description": "Create scheduler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Scheduler",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a scheduler",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateScheduler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Scheduler"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete scheduler using \"id\" field. Send deleted info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Scheduler By ID",
+                "parameters": [
+                    {
+                        "description": "Scheduler ID",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "type": "object"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update scheduler, must have \"id\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Scheduler By ID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a scheduler",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateScheduler"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/scheduler/{id}": {
+            "get": {
+                "description": "find scheduler info by scheduler id",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Scheduler By ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Scheduler ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Scheduler"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/schedulers": {
+            "get": {
+                "description": "find all scheduler info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Scheduler",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Scheduler"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/secretkeys": {
+            "get": {
+                "description": "Find Mifare Card Secret Key",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Mifare Card Secret Key",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SecretKey"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/student": {
+            "post": {
+                "description": "Create student",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create Student",
+                "parameters": [
+                    {
+                        "description": "Fields need to create a student",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SwagCreateStudent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Student"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete student using \"mssv\" field. Send deleted info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete Student By MSSV",
+                "parameters": [
+                    {
+                        "description": "Student MSSV",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DeleteStudent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update student, must have correct \"id\" and \"mssv\" field. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update Student By ID",
+                "parameters": [
+                    {
+                        "description": "Fields need to update a student",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Student"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/student/{msnv}/scheduler": {
+            "post": {
+                "description": "Add scheduler that allows student open specific door. Send updated info to MQTT broker",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Add Door Open Scheduler For Student",
+                "parameters": [
+                    {
+                        "description": "Request with Scheduler, GatewayID, DoorlockAdress",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserSchedulerReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/student/{mssv}": {
+            "get": {
+                "description": "find student info by student mssv",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find Student By MSSV",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Student MSSV",
+                        "name": "mssv",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Student"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/students": {
+            "get": {
+                "description": "find all students info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Find All Student",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/models.Student"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Area": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "manager": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Customer": {
+            "type": "object",
+            "required": [
+                "cccd"
+            ],
+            "properties": {
+                "cccd": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "keypadPass": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rfidPass": {
+                    "type": "string"
+                },
+                "schedulers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Scheduler"
+                    }
+                }
+            }
+        },
+        "models.DeleteCustomer": {
+            "type": "object",
+            "required": [
+                "cccd"
+            ],
+            "properties": {
+                "cccd": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.DeleteEmployee": {
+            "type": "object",
+            "required": [
+                "msnv"
+            ],
+            "properties": {
+                "msnv": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.DeleteStudent": {
+            "type": "object",
+            "required": [
+                "mssv"
+            ],
+            "properties": {
+                "mssv": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Doorlock": {
+            "type": "object",
+            "properties": {
+                "activeState": {
+                    "type": "string"
+                },
+                "blockId": {
+                    "type": "string"
+                },
+                "connectState": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "doorSerialId": {
+                    "type": "string"
+                },
+                "doorState": {
+                    "type": "string"
+                },
+                "doorlockAddress": {
+                    "type": "string"
+                },
+                "floorId": {
+                    "type": "string"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastOpenTime": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "lockState": {
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                },
+                "schedulers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Scheduler"
+                    }
+                }
+            }
+        },
+        "models.DoorlockCmd": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.DoorlockStatus": {
+            "type": "object",
+            "properties": {
+                "connectState": {
+                    "type": "string"
+                },
+                "doorState": {
+                    "type": "string"
+                },
+                "doorlockAddress": {
+                    "type": "string"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lockState": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.DoorlockStatusLog": {
+            "type": "object",
+            "properties": {
+                "doorId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "stateValue": {
+                    "description": "corresponding statetype",
+                    "type": "string"
+                },
+                "statusType": {
+                    "description": "ConnectState, DoorState, LockState",
+                    "type": "string"
+                }
+            }
+        },
+        "models.Employee": {
+            "type": "object",
+            "required": [
+                "msnv"
+            ],
+            "properties": {
+                "department": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "highestPriority": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "keypadPass": {
+                    "type": "string"
+                },
+                "msnv": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rfidPass": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "schedulers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Scheduler"
+                    }
+                }
+            }
+        },
+        "models.Gateway": {
+            "type": "object",
+            "properties": {
+                "areaId": {
+                    "type": "string"
+                },
+                "connectState": {
+                    "type": "boolean"
+                },
+                "doorlocks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Doorlock"
+                    }
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "gw_networks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.GwNetwork"
+                    }
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "softwareVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GatewayBlockCmd": {
+            "type": "object",
+            "required": [
+                "action",
+                "block_id"
+            ],
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "block_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GatewayLog": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "logTime": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GwNetwork": {
+            "type": "object",
+            "properties": {
+                "gatewayID": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "interfaceName": {
+                    "type": "string"
+                },
+                "macAddress": {
+                    "type": "string"
+                },
+                "primaryIpAddress": {
+                    "type": "string"
+                },
+                "secondaryIpAddress": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Scheduler": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "base": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "string"
+                },
+                "className": {
+                    "type": "string"
+                },
+                "customerId": {
+                    "type": "string"
+                },
+                "doorId": {
+                    "description": "DoorID          *string `gorm:\"type:varchar(256);\" json:\"doorId\"`",
+                    "type": "integer"
+                },
+                "employeeId": {
+                    "type": "string"
+                },
+                "endClassTime": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lecturerId": {
+                    "type": "string"
+                },
+                "lecturerName": {
+                    "type": "string"
+                },
+                "role": {
+                    "description": "value in [\"employee\", \"student\", \"customer\"]",
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                },
+                "roomName": {
+                    "type": "string"
+                },
+                "roomRow": {
+                    "type": "string"
+                },
+                "startClassTime": {
+                    "type": "integer"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "studentId": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                },
+                "weekDay": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.SecretKey": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "secret": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Student": {
+            "type": "object",
+            "required": [
+                "mssv"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "keypadPass": {
+                    "type": "string"
+                },
+                "major": {
+                    "type": "string"
+                },
+                "mssv": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rfidPass": {
+                    "type": "string"
+                },
+                "schedulers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Scheduler"
+                    }
+                }
+            }
+        },
+        "models.SwagCreateArea": {
+            "type": "object",
+            "properties": {
+                "gateway": {
+                    "$ref": "#/definitions/models.Gateway"
+                },
+                "manager": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagCreateCustomer": {
+            "type": "object",
+            "required": [
+                "cccd"
+            ],
+            "properties": {
+                "cccd": {
+                    "type": "string"
+                },
+                "keypadPass": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rfidPass": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagCreateDoorlock": {
+            "type": "object",
+            "properties": {
+                "areaId": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "doorlockAddress": {
+                    "type": "string"
+                },
+                "gatewayId": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "schedulerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.SwagCreateEmployee": {
+            "type": "object",
+            "required": [
+                "msnv"
+            ],
+            "properties": {
+                "department": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "highestPriority": {
+                    "type": "boolean"
+                },
+                "keypadPass": {
+                    "type": "string"
+                },
+                "msnv": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rfidPass": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagCreateGateway": {
+            "type": "object",
+            "properties": {
+                "areaId": {
+                    "type": "integer"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagCreateScheduler": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "base": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "string"
+                },
+                "className": {
+                    "type": "string"
+                },
+                "endClassTime": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "lecturerId": {
+                    "type": "string"
+                },
+                "lecturerName": {
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                },
+                "roomName": {
+                    "type": "string"
+                },
+                "roomRow": {
+                    "type": "string"
+                },
+                "startClassTime": {
+                    "type": "integer"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "weekDay": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.SwagCreateStudent": {
+            "type": "object",
+            "required": [
+                "mssv"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "keypadPass": {
+                    "type": "string"
+                },
+                "major": {
+                    "type": "string"
+                },
+                "mssv": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "rfidPass": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagUpateGateway": {
+            "type": "object",
+            "properties": {
+                "areaId": {
+                    "type": "integer"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagUpdateArea": {
+            "type": "object",
+            "properties": {
+                "gateway": {
+                    "$ref": "#/definitions/models.Gateway"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "manager": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagUpdateDoorlock": {
+            "type": "object",
+            "properties": {
+                "activeState": {
+                    "type": "string"
+                },
+                "blockId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "doorSerialId": {
+                    "type": "string"
+                },
+                "doorlockAddress": {
+                    "type": "string"
+                },
+                "floorId": {
+                    "type": "string"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SwagUpdateScheduler": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "base": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "string"
+                },
+                "className": {
+                    "type": "string"
+                },
+                "endClassTime": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lecturerId": {
+                    "type": "string"
+                },
+                "lecturerName": {
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                },
+                "roomName": {
+                    "type": "string"
+                },
+                "roomRow": {
+                    "type": "string"
+                },
+                "startClassTime": {
+                    "type": "integer"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "weekDay": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.SwaggerDoorlockCmd": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UpdateScheduler": {
+            "type": "object",
+            "required": [
+                "doorlockAddress",
+                "userId"
+            ],
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "base": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "string"
+                },
+                "className": {
+                    "type": "string"
+                },
+                "customerId": {
+                    "type": "string"
+                },
+                "doorId": {
+                    "description": "DoorID          *string `gorm:\"type:varchar(256);\" json:\"doorId\"`",
+                    "type": "integer"
+                },
+                "doorlockAddress": {
+                    "type": "string"
+                },
+                "employeeId": {
+                    "type": "string"
+                },
+                "endClassTime": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lecturerId": {
+                    "type": "string"
+                },
+                "lecturerName": {
+                    "type": "string"
+                },
+                "role": {
+                    "description": "value in [\"employee\", \"student\", \"customer\"]",
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                },
+                "roomName": {
+                    "type": "string"
+                },
+                "roomRow": {
+                    "type": "string"
+                },
+                "startClassTime": {
+                    "type": "integer"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "studentId": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                },
+                "weekDay": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.UserSchedulerReq": {
+            "type": "object",
+            "required": [
+                "doorlockAddress",
+                "gatewayId"
+            ],
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "base": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "string"
+                },
+                "className": {
+                    "type": "string"
+                },
+                "customerId": {
+                    "type": "string"
+                },
+                "doorId": {
+                    "description": "DoorID          *string `gorm:\"type:varchar(256);\" json:\"doorId\"`",
+                    "type": "integer"
+                },
+                "doorlockAddress": {
+                    "type": "string"
+                },
+                "employeeId": {
+                    "type": "string"
+                },
+                "endClassTime": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "gatewayId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lecturerId": {
+                    "type": "string"
+                },
+                "lecturerName": {
+                    "type": "string"
+                },
+                "role": {
+                    "description": "value in [\"employee\", \"student\", \"customer\"]",
+                    "type": "string"
+                },
+                "roomId": {
+                    "type": "string"
+                },
+                "roomName": {
+                    "type": "string"
+                },
+                "roomRow": {
+                    "type": "string"
+                },
+                "startClassTime": {
+                    "type": "integer"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "studentId": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                },
+                "weekDay": {
+                    "type": "integer"
+                }
+            }
+        },
+        "utils.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "errorMsg": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "statusCode": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+    mssql:
+        container_name: db-mssql
+        image: 'mcr.microsoft.com/mssql/server:2019-latest'
+        user: root
+        ports:
+            - '1433:1433'
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=Iot@@123
+            - TZ=Asia/Ho_Chi_Minh
+        volumes:
+            - ./data:/var/opt/mssql
+    emqx:
+        container_name: mqtt-broker
+        image: emqx/emqx:latest
+        environment:
+            - "EMQX_NAME=emqx"
+        ports:
+            - '8000:8080'
+            - '18083:18083'
+            - '1883:1883'
+            - '8883:8883'
+            - '8083:8083'
+            - '8084:8084'
+        volumes:
+            - ./emqx_data/emqx.conf:/opt/emqx/etc/emqx.conf
+            - ./emqx_data/certs:/opt/emqx/etc/certs
+    web:
+        restart: unless-stopped
+        depends_on:
+            - mssql
+        container_name: dms-be
+        image: 'dms-be:latest'
+        ports:
+            - '8080:8080'
+networks:
+    default:
+        external: true
+        name: dms-nw

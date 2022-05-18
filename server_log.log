@@ -1,0 +1,9 @@
+<2022-05-18 15:32:26.532771 +07:00> - DEBUG - Msg= Connected   {Params: Component=MQTT}
+<2022-05-18 15:32:26.532852 +07:00> - WARNING - Msg= [store]    memorystore wiped   {Params: Component=MQTT - MqttLevel=MQTT WARNING}
+<2022-05-18 15:32:26.53395 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/doorlock/create   {Params: Component=MQTT}
+<2022-05-18 15:32:26.534978 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/doorlock/delete   {Params: Component=MQTT}
+<2022-05-18 15:32:26.535737 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/lastwill   {Params: Component=MQTT}
+<2022-05-18 15:32:26.535801 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/shutdown   {Params: Component=MQTT}
+<2022-05-18 15:32:26.535858 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/bootup   {Params: Component=MQTT}
+<2022-05-18 15:32:26.535903 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/log/create   {Params: Component=MQTT}
+<2022-05-18 15:32:26.535938 +07:00> - INFO - Msg= [MQTT-INFO] Subscribed to topic gateway/doorlock/update   {Params: Component=MQTT}

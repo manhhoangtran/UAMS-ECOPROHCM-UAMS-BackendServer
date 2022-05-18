@@ -1,0 +1,1942 @@
+basePath: /v1
+definitions:
+  models.Area:
+    properties:
+      id:
+        type: integer
+      manager:
+        type: string
+      name:
+        type: string
+    type: object
+  models.Customer:
+    properties:
+      cccd:
+        type: string
+      id:
+        type: integer
+      keypadPass:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      rfidPass:
+        type: string
+      schedulers:
+        items:
+          $ref: '#/definitions/models.Scheduler'
+        type: array
+    required:
+    - cccd
+    type: object
+  models.DeleteCustomer:
+    properties:
+      cccd:
+        type: string
+    required:
+    - cccd
+    type: object
+  models.DeleteEmployee:
+    properties:
+      msnv:
+        type: string
+    required:
+    - msnv
+    type: object
+  models.DeleteStudent:
+    properties:
+      mssv:
+        type: string
+    required:
+    - mssv
+    type: object
+  models.Doorlock:
+    properties:
+      activeState:
+        type: string
+      blockId:
+        type: string
+      connectState:
+        type: string
+      description:
+        type: string
+      doorSerialId:
+        type: string
+      doorState:
+        type: string
+      doorlockAddress:
+        type: string
+      floorId:
+        type: string
+      gatewayId:
+        type: string
+      id:
+        type: integer
+      lastOpenTime:
+        type: integer
+      location:
+        type: string
+      lockState:
+        type: string
+      roomId:
+        type: string
+      schedulers:
+        items:
+          $ref: '#/definitions/models.Scheduler'
+        type: array
+    type: object
+  models.DoorlockCmd:
+    properties:
+      duration:
+        type: string
+      id:
+        type: string
+      state:
+        type: string
+    type: object
+  models.DoorlockStatus:
+    properties:
+      connectState:
+        type: string
+      doorState:
+        type: string
+      doorlockAddress:
+        type: string
+      gatewayId:
+        type: string
+      id:
+        type: string
+      lockState:
+        type: string
+    type: object
+  models.DoorlockStatusLog:
+    properties:
+      doorId:
+        type: string
+      id:
+        type: integer
+      stateValue:
+        description: corresponding statetype
+        type: string
+      statusType:
+        description: ConnectState, DoorState, LockState
+        type: string
+    type: object
+  models.Employee:
+    properties:
+      department:
+        type: string
+      email:
+        type: string
+      highestPriority:
+        type: boolean
+      id:
+        type: integer
+      keypadPass:
+        type: string
+      msnv:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      rfidPass:
+        type: string
+      role:
+        type: string
+      schedulers:
+        items:
+          $ref: '#/definitions/models.Scheduler'
+        type: array
+    required:
+    - msnv
+    type: object
+  models.Gateway:
+    properties:
+      areaId:
+        type: string
+      connectState:
+        type: boolean
+      doorlocks:
+        items:
+          $ref: '#/definitions/models.Doorlock'
+        type: array
+      gatewayId:
+        type: string
+      gw_networks:
+        items:
+          $ref: '#/definitions/models.GwNetwork'
+        type: array
+      id:
+        type: integer
+      name:
+        type: string
+      softwareVersion:
+        type: string
+    type: object
+  models.GatewayBlockCmd:
+    properties:
+      action:
+        type: string
+      block_id:
+        type: string
+    required:
+    - action
+    - block_id
+    type: object
+  models.GatewayLog:
+    properties:
+      content:
+        type: string
+      gatewayId:
+        type: string
+      id:
+        type: integer
+      logTime:
+        type: string
+    type: object
+  models.GwNetwork:
+    properties:
+      gatewayID:
+        type: string
+      id:
+        type: integer
+      interfaceName:
+        type: string
+      macAddress:
+        type: string
+      primaryIpAddress:
+        type: string
+      secondaryIpAddress:
+        type: string
+    type: object
+  models.Scheduler:
+    properties:
+      amount:
+        type: integer
+      base:
+        type: string
+      capacity:
+        type: integer
+      classId:
+        type: string
+      className:
+        type: string
+      customerId:
+        type: string
+      doorId:
+        description: DoorID          *string `gorm:"type:varchar(256);" json:"doorId"`
+        type: integer
+      employeeId:
+        type: string
+      endClassTime:
+        type: integer
+      endDate:
+        type: string
+      id:
+        type: integer
+      lecturerId:
+        type: string
+      lecturerName:
+        type: string
+      role:
+        description: value in ["employee", "student", "customer"]
+        type: string
+      roomId:
+        type: string
+      roomName:
+        type: string
+      roomRow:
+        type: string
+      startClassTime:
+        type: integer
+      startDate:
+        type: string
+      status:
+        type: string
+      studentId:
+        type: string
+      userId:
+        type: string
+      weekDay:
+        type: integer
+    type: object
+  models.SecretKey:
+    properties:
+      id:
+        type: integer
+      secret:
+        type: string
+    type: object
+  models.Student:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      keypadPass:
+        type: string
+      major:
+        type: string
+      mssv:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      rfidPass:
+        type: string
+      schedulers:
+        items:
+          $ref: '#/definitions/models.Scheduler'
+        type: array
+    required:
+    - mssv
+    type: object
+  models.SwagCreateArea:
+    properties:
+      gateway:
+        $ref: '#/definitions/models.Gateway'
+      manager:
+        type: string
+      name:
+        type: string
+    type: object
+  models.SwagCreateCustomer:
+    properties:
+      cccd:
+        type: string
+      keypadPass:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      rfidPass:
+        type: string
+    required:
+    - cccd
+    type: object
+  models.SwagCreateDoorlock:
+    properties:
+      areaId:
+        type: integer
+      description:
+        type: string
+      doorlockAddress:
+        type: string
+      gatewayId:
+        type: integer
+      location:
+        type: string
+      schedulerId:
+        type: integer
+    type: object
+  models.SwagCreateEmployee:
+    properties:
+      department:
+        type: string
+      email:
+        type: string
+      highestPriority:
+        type: boolean
+      keypadPass:
+        type: string
+      msnv:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      rfidPass:
+        type: string
+      role:
+        type: string
+    required:
+    - msnv
+    type: object
+  models.SwagCreateGateway:
+    properties:
+      areaId:
+        type: integer
+      gatewayId:
+        type: string
+      name:
+        type: string
+    type: object
+  models.SwagCreateScheduler:
+    properties:
+      amount:
+        type: integer
+      base:
+        type: string
+      capacity:
+        type: integer
+      classId:
+        type: string
+      className:
+        type: string
+      endClassTime:
+        type: integer
+      endDate:
+        type: string
+      lecturerId:
+        type: string
+      lecturerName:
+        type: string
+      roomId:
+        type: string
+      roomName:
+        type: string
+      roomRow:
+        type: string
+      startClassTime:
+        type: integer
+      startDate:
+        type: string
+      status:
+        type: string
+      weekDay:
+        type: integer
+    type: object
+  models.SwagCreateStudent:
+    properties:
+      email:
+        type: string
+      keypadPass:
+        type: string
+      major:
+        type: string
+      mssv:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      rfidPass:
+        type: string
+    required:
+    - mssv
+    type: object
+  models.SwagUpateGateway:
+    properties:
+      areaId:
+        type: integer
+      gatewayId:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.SwagUpdateArea:
+    properties:
+      gateway:
+        $ref: '#/definitions/models.Gateway'
+      id:
+        type: integer
+      manager:
+        type: string
+      name:
+        type: string
+    type: object
+  models.SwagUpdateDoorlock:
+    properties:
+      activeState:
+        type: string
+      blockId:
+        type: string
+      description:
+        type: string
+      doorSerialId:
+        type: string
+      doorlockAddress:
+        type: string
+      floorId:
+        type: string
+      gatewayId:
+        type: string
+      id:
+        type: integer
+      location:
+        type: string
+      roomId:
+        type: string
+    type: object
+  models.SwagUpdateScheduler:
+    properties:
+      amount:
+        type: integer
+      base:
+        type: string
+      capacity:
+        type: integer
+      classId:
+        type: string
+      className:
+        type: string
+      endClassTime:
+        type: integer
+      endDate:
+        type: string
+      id:
+        type: integer
+      lecturerId:
+        type: string
+      lecturerName:
+        type: string
+      roomId:
+        type: string
+      roomName:
+        type: string
+      roomRow:
+        type: string
+      startClassTime:
+        type: integer
+      startDate:
+        type: string
+      status:
+        type: string
+      weekDay:
+        type: integer
+    type: object
+  models.SwaggerDoorlockCmd:
+    properties:
+      duration:
+        type: string
+      id:
+        type: string
+      state:
+        type: string
+    type: object
+  models.UpdateScheduler:
+    properties:
+      amount:
+        type: integer
+      base:
+        type: string
+      capacity:
+        type: integer
+      classId:
+        type: string
+      className:
+        type: string
+      customerId:
+        type: string
+      doorId:
+        description: DoorID          *string `gorm:"type:varchar(256);" json:"doorId"`
+        type: integer
+      doorlockAddress:
+        type: string
+      employeeId:
+        type: string
+      endClassTime:
+        type: integer
+      endDate:
+        type: string
+      id:
+        type: integer
+      lecturerId:
+        type: string
+      lecturerName:
+        type: string
+      role:
+        description: value in ["employee", "student", "customer"]
+        type: string
+      roomId:
+        type: string
+      roomName:
+        type: string
+      roomRow:
+        type: string
+      startClassTime:
+        type: integer
+      startDate:
+        type: string
+      status:
+        type: string
+      studentId:
+        type: string
+      userId:
+        type: string
+      weekDay:
+        type: integer
+    required:
+    - doorlockAddress
+    - userId
+    type: object
+  models.UserSchedulerReq:
+    properties:
+      amount:
+        type: integer
+      base:
+        type: string
+      capacity:
+        type: integer
+      classId:
+        type: string
+      className:
+        type: string
+      customerId:
+        type: string
+      doorId:
+        description: DoorID          *string `gorm:"type:varchar(256);" json:"doorId"`
+        type: integer
+      doorlockAddress:
+        type: string
+      employeeId:
+        type: string
+      endClassTime:
+        type: integer
+      endDate:
+        type: string
+      gatewayId:
+        type: string
+      id:
+        type: integer
+      lecturerId:
+        type: string
+      lecturerName:
+        type: string
+      role:
+        description: value in ["employee", "student", "customer"]
+        type: string
+      roomId:
+        type: string
+      roomName:
+        type: string
+      roomRow:
+        type: string
+      startClassTime:
+        type: integer
+      startDate:
+        type: string
+      status:
+        type: string
+      studentId:
+        type: string
+      userId:
+        type: string
+      weekDay:
+        type: integer
+    required:
+    - doorlockAddress
+    - gatewayId
+    type: object
+  utils.ErrorResponse:
+    properties:
+      errorMsg:
+        type: string
+      msg:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+host: http://iot.hcmue.space:8002
+info:
+  contact:
+    name: Mr. Khai
+  description: This is API document for DMS backend server
+  title: Backend API
+  version: "1.0"
+paths:
+  /v1//scheduler/excel:
+    patch:
+      consumes:
+      - application/json
+      description: Update Scheduler base on Excel
+      parameters:
+      - description: Fields need to append a scheduler
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagUpdateScheduler'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Scheduler'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Scheduler Base On Excel
+    post:
+      consumes:
+      - application/json
+      description: Append Scheduler base on Excel
+      parameters:
+      - description: Fields need to append a scheduler
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateScheduler'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Scheduler'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Append Scheduler Base On Excel
+  /v1/area:
+    delete:
+      consumes:
+      - application/json
+      description: Delete area using "id" field
+      parameters:
+      - description: Area ID
+        in: body
+        name: data
+        required: true
+        schema:
+          allOf:
+          - type: object
+          - properties:
+              id:
+                type: integer
+            type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Area By ID
+    patch:
+      consumes:
+      - application/json
+      description: Update area, must have "id" field
+      parameters:
+      - description: Fields need to update a area
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagUpdateArea'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Area By ID
+    post:
+      consumes:
+      - application/json
+      description: Create area
+      parameters:
+      - description: Fields need to create a area
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateArea'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Area'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Area
+  /v1/area/{id}:
+    get:
+      description: find area info by area id
+      parameters:
+      - description: Area ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Area'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Area By ID
+  /v1/areas:
+    get:
+      description: find all areas info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Area'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Area
+  /v1/block/cmd:
+    post:
+      consumes:
+      - application/json
+      description: Unlock or Lock all doorlocks in a Block
+      parameters:
+      - description: Gateway Block command
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.GatewayBlockCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Unlock or Lock all gateway's doorlocks by BlockID
+  /v1/customer:
+    delete:
+      consumes:
+      - application/json
+      description: Delete customer using "cccd" field. Send deleted info to MQTT broker
+      parameters:
+      - description: Customer CCCD
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.DeleteCustomer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Customer By CCCD
+    patch:
+      consumes:
+      - application/json
+      description: Update customer, must have correct "id" and "cccd" field. Send
+        updated info to MQTT broker
+      parameters:
+      - description: Fields need to update a customer
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Customer By ID
+    post:
+      consumes:
+      - application/json
+      description: Create customer
+      parameters:
+      - description: Fields need to create a customer
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateCustomer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Customer
+  /v1/customer/{cccd}:
+    get:
+      description: find customer info by customer cccd
+      parameters:
+      - description: Customer CCCD
+        in: path
+        name: cccd
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Customer By CCCD
+  /v1/customer/{cccd}/scheduler:
+    post:
+      consumes:
+      - application/json
+      description: Add scheduler that allows customer open specific door. Send updated
+        info to MQTT broker
+      parameters:
+      - description: Request with Scheduler, GatewayID, DoorlockAdress
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserSchedulerReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Add Door Open Scheduler For Customer
+  /v1/customers:
+    get:
+      description: find all customers info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Customer'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Customer
+  /v1/doorlock:
+    delete:
+      consumes:
+      - application/json
+      description: Delete doorlock using "id" field. Send deleted info to MQTT broker
+      parameters:
+      - description: Doorlock Delete payload
+        in: body
+        name: data
+        required: true
+        schema:
+          allOf:
+          - type: object
+          - properties:
+              id:
+                type: integer
+            type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Doorlock By ID
+    patch:
+      consumes:
+      - application/json
+      description: Update doorlock, must have "gatewayId" and "doorlockAddress" field.
+        Send updated info to MQTT broker
+      parameters:
+      - description: Fields need to update a doorlock
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagUpdateDoorlock'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Doorlock By Doorlock Address and GatewayID
+    post:
+      consumes:
+      - application/json
+      description: Create doorlock. Send created info to MQTT broker
+      parameters:
+      - description: Fields need to create a doorlock
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateDoorlock'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Doorlock'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Doorlock
+  /v1/doorlock/{id}:
+    get:
+      description: find doorlock info by doorlock id
+      parameters:
+      - description: Doorlock ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Doorlock'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Doorlock By ID
+  /v1/doorlock/cmd:
+    patch:
+      consumes:
+      - application/json
+      description: Update doorlock state, must have "id" field. Send updated info
+        to MQTT broker
+      parameters:
+      - description: Fields need to update a doorlock state
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwaggerDoorlockCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Doorlock State By ID
+  /v1/doorlock/state/cmd:
+    patch:
+      consumes:
+      - application/json
+      description: Send command lock/unlock forever to Doorlock by serialID and save
+        its lock state
+      parameters:
+      - description: Fields need to update a doorlock state
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.DoorlockCmd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Send command lock/unlock forever to Doorlock and update doorlock's
+        lock state
+  /v1/doorlock/status/{id}:
+    get:
+      description: Get doorlock status by doorlock id
+      parameters:
+      - description: Doorlock ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DoorlockStatus'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Get Doorlock Status By ID
+  /v1/doorlockStatusLog/:fromTime/:toTime:
+    delete:
+      description: delete doorlock status logs in time range
+      parameters:
+      - description: From Unix time
+        in: path
+        name: fromTime
+        required: true
+        type: string
+      - description: To Unix time
+        in: path
+        name: toTime
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete DoorlockStatusLog In Time Range
+    get:
+      description: find doorlock status logs in time range
+      parameters:
+      - description: From Unix time
+        in: path
+        name: fromTime
+        required: true
+        type: string
+      - description: To Unix time
+        in: path
+        name: toTime
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.DoorlockStatusLog'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find DoorlockStatusLog In Time Range
+  /v1/doorlockStatusLog/{doorId}:
+    get:
+      description: find doorlock status logs by door id
+      parameters:
+      - description: DoorlockStatusLog ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DoorlockStatusLog'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find DoorlockStatusLog By DoorID
+  /v1/doorlockStatusLog/door/:id:
+    delete:
+      description: delete doorlock status logs by doorId
+      parameters:
+      - description: DoorID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Doorlock status logs by doorId
+  /v1/doorlockStatusLogs:
+    get:
+      description: find all doorlock status logs info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.DoorlockStatusLog'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All DoorlockStatusLog
+  /v1/doorlocks:
+    get:
+      description: find all doorlocks info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Doorlock'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Doorlock
+  /v1/employee:
+    delete:
+      consumes:
+      - application/json
+      description: Delete employee using "msnv" field. Send deleted info to MQTT broker
+      parameters:
+      - description: Employee MSNV
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.DeleteEmployee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Employee By MSNV
+    patch:
+      consumes:
+      - application/json
+      description: Update employee, must have correct "id" and "msnv" field. Send
+        updated info to MQTT broker
+      parameters:
+      - description: Fields need to update an employee
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.Employee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Employee By ID and MSNV
+    post:
+      consumes:
+      - application/json
+      description: Create employee. Send created info to MQTT broker
+      parameters:
+      - description: Fields need to create a employee
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateEmployee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Employee
+  /v1/employee/{msnv}:
+    get:
+      description: find employee info by employee msnv
+      parameters:
+      - description: Employee MSNV
+        in: path
+        name: msnv
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Employee By MSNV
+  /v1/employee/{msnv}/scheduler:
+    post:
+      consumes:
+      - application/json
+      description: Add scheduler that allows employee open specific door. Send updated
+        info to MQTT broker
+      parameters:
+      - description: Request with Scheduler, GatewayID, DoorlockAdress
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserSchedulerReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Add Door Open Scheduler For Employee
+  /v1/employees:
+    get:
+      description: find all employees info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Employee'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Employee
+  /v1/gateway:
+    delete:
+      consumes:
+      - application/json
+      description: Delete gateway using "" field. Send deleted info to MQTT broker
+      parameters:
+      - description: Gateway ID
+        in: body
+        name: data
+        required: true
+        schema:
+          allOf:
+          - type: object
+          - properties:
+              gateway_id:
+                type: string
+            type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Gateway By Gateway ID
+    patch:
+      consumes:
+      - application/json
+      description: Update gateway, must have "gateway_id" field. Send updated info
+        to MQTT broker
+      parameters:
+      - description: Fields need to update a gateway
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagUpateGateway'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Gateway By Gateway ID
+    post:
+      consumes:
+      - application/json
+      description: Create gateway. Send created info to MQTT broker
+      parameters:
+      - description: Fields need to create a gateway
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateGateway'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Gateway'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Gateway
+  /v1/gateway/{id}:
+    get:
+      description: find gateway and doorlock info by gateway id
+      parameters:
+      - description: Gateway ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Gateway'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Gateway By ID
+  /v1/gateway/{id}/doorlock:
+    post:
+      consumes:
+      - application/json
+      description: Add Doorlock for Gateway
+      parameters:
+      - description: Request with Doorlock
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.Doorlock'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Add Doorlock for Gateway
+  /v1/gatewayLog/{id}:
+    get:
+      description: find gateway log info by id
+      parameters:
+      - description: GatewayLog ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GatewayLog'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find GatewayLog By ID
+  /v1/gatewayLogs:
+    get:
+      description: find all gateway logs info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.GatewayLog'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All GatewayLog
+  /v1/gatewayLogs/:id/period:
+    get:
+      description: Get gateway's logs by log type (DEBUG/INFO) in a period of time
+        (UNIX)
+      parameters:
+      - description: GatewayLog ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Log's type (DEBUG/INFO), default is DEBUG
+        in: query
+        name: type
+        type: string
+      - description: From Unix time
+        in: query
+        name: from
+        required: true
+        type: string
+      - description: To Unix time, default use current time
+        in: query
+        name: to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.GatewayLog'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Gateway logs by log type in period of time
+  /v1/gatewayLogs/period:
+    post:
+      description: Change time period for GatewayLogs Cleaner
+      parameters:
+      - description: Period (HOURS)
+        in: path
+        name: period
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: 'Update GatewayLogs Cleaner time period (Default: 1 week)'
+  /v1/gatewayLogs/period/{id}/date/:from/:to:
+    get:
+      description: find Gateway logs by period of time
+      parameters:
+      - description: GatewayLog ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: From Unix time
+        in: path
+        name: from
+        required: true
+        type: string
+      - description: To Unix time
+        in: path
+        name: to
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.GatewayLog'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Gateway logs by period of time
+  /v1/gateways:
+    get:
+      description: find all gateways info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Gateway'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Gateway
+  /v1/scheduler:
+    delete:
+      consumes:
+      - application/json
+      description: Delete scheduler using "id" field. Send deleted info to MQTT broker
+      parameters:
+      - description: Scheduler ID
+        in: body
+        name: data
+        required: true
+        schema:
+          allOf:
+          - type: object
+          - properties:
+              id:
+                type: integer
+            type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Scheduler By ID
+    patch:
+      consumes:
+      - application/json
+      description: Update scheduler, must have "id" field. Send updated info to MQTT
+        broker
+      parameters:
+      - description: Fields need to update a scheduler
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateScheduler'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Scheduler By ID
+    post:
+      consumes:
+      - application/json
+      description: Create scheduler
+      parameters:
+      - description: Fields need to create a scheduler
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateScheduler'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Scheduler'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Scheduler
+  /v1/scheduler/{id}:
+    get:
+      description: find scheduler info by scheduler id
+      parameters:
+      - description: Scheduler ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Scheduler'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Scheduler By ID
+  /v1/schedulers:
+    get:
+      description: find all scheduler info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Scheduler'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Scheduler
+  /v1/secretkeys:
+    get:
+      description: Find Mifare Card Secret Key
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SecretKey'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Mifare Card Secret Key
+  /v1/student:
+    delete:
+      consumes:
+      - application/json
+      description: Delete student using "mssv" field. Send deleted info to MQTT broker
+      parameters:
+      - description: Student MSSV
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.DeleteStudent'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Delete Student By MSSV
+    patch:
+      consumes:
+      - application/json
+      description: Update student, must have correct "id" and "mssv" field. Send updated
+        info to MQTT broker
+      parameters:
+      - description: Fields need to update a student
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.Student'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Update Student By ID
+    post:
+      consumes:
+      - application/json
+      description: Create student
+      parameters:
+      - description: Fields need to create a student
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagCreateStudent'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Student'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Create Student
+  /v1/student/{msnv}/scheduler:
+    post:
+      consumes:
+      - application/json
+      description: Add scheduler that allows student open specific door. Send updated
+        info to MQTT broker
+      parameters:
+      - description: Request with Scheduler, GatewayID, DoorlockAdress
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserSchedulerReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Add Door Open Scheduler For Student
+  /v1/student/{mssv}:
+    get:
+      description: find student info by student mssv
+      parameters:
+      - description: Student MSSV
+        in: path
+        name: mssv
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Student'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find Student By MSSV
+  /v1/students:
+    get:
+      description: find all students info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Student'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Find All Student
+swagger: "2.0"

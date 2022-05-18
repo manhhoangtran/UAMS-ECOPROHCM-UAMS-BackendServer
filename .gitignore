@@ -1,0 +1,4 @@
+data
+.env.local
+log_test.log
+server_log.log

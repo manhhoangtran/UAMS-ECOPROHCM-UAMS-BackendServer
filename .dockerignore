@@ -1,0 +1,11 @@
+.vscode
+.github
+.gitignore
+.idea
+
+data
+coverage.out
+README.md
+Makefile
+LICENSE
+docker-compose.yml
